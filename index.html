@@ -17,17 +17,24 @@
     ul{margin:8px 0 16px;padding-left:20px}
     code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
     form{display:grid;gap:10px}
-    label{font-size:0.9rem;color:var(--muted)}
-    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eef8;font-size:0.95rem}
+    label{font-size:0.9rem;color:var(--muted);display:block}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eef8;font-size:0.95rem;width:100%;box-sizing:border-box}
     button{background:#0b63ff;color:#fff;padding:10px 14px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
     footer{font-size:0.85rem;color:var(--muted);margin-top:16px}
     .small{font-size:0.9rem;color:var(--muted)}
+    .row{display:flex;gap:10px}
+    .col{flex:1}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect rx='8' width='48' height='48' fill='%230b63ff'/%3E%3Ctext x='50%25' y='55%25' font-size='20' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3E8%3C/text%3E%3C/svg%3E" alt="Loop8AI" width="48" height="48"/>
+      <!-- Logo SVG sencillo -->
+      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <rect rx="8" width="48" height="48" fill="#0b63ff"/>
+        <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="20" fill="#fff" text-anchor="middle" dominant-baseline="middle">L8</text>
+      </svg>
+
       <div>
         <h1>Loop8AI — Política de Privacidad</h1>
         <p class="lead">Cómo tratamos tus datos y cómo solicitar la key de WhatsApp para integraciones.</p>
@@ -41,14 +48,14 @@
 
     <section class="card">
       <h2>Cómo gestionamos tus datos</h2>
-      <p>En <strong>Loop8AI</strong> desarrollamos e implementamos mecanismos y procedimientos de privacidad que siguen las prácticas recomendadas del sector. Capacitamos a nuestros equipos y pedimos a proveedores que cumplan los mismos criterios de gestión, seguridad y privacidad.</p>
+      <p>En <strong>Loop8AI</strong> desarrollamos e implementamos mecanismos y procedimientos de privacidad que siguen las prácticas recomendadas del sector. Capacitamos a nuestros equipos y pedimos controles contractuales a nuestros proveedores.</p>
       <p>Todos los empleados y contratistas firman acuerdos de confidencialidad para preservar la privacidad y seguridad de los datos.</p>
     </section>
 
     <section class="card">
       <h2>Definiciones</h2>
       <p><strong>Datos del cliente:</strong> cualquier dato que un cliente almacene en los servicios de Loop8AI (puede incluir información personal).</p>
-      <p><strong>Información de la cuenta:</strong> datos que los clientes nos proporcionan para crear y administrar sus cuentas (nombres, emails, teléfono, facturación, comunicaciones de soporte, metadatos, etc.).</p>
+      <p><strong>Información de la cuenta:</strong> datos que los clientes nos proporcionan para crear y administrar sus cuentas (nombres, emails, teléfono, facturación, comunicaciones de soporte, etc.).</p>
     </section>
 
     <section class="card">
@@ -69,7 +76,7 @@
 
     <section class="card">
       <h2>RGPD y cumplimiento internacional</h2>
-      <p>Adaptamos nuestro programa de privacidad al RGPD y a otras normativas internacionales relevantes. Cuando actuamos como procesador, procesamos datos por encargo y conforme a los acuerdos contractuales que firmamos con nuestros clientes.</p>
+      <p>Adaptamos nuestro programa de privacidad al RGPD y a otras normativas internacionales relevantes. Cuando actuamos como procesador, procesamos datos por encargo y conforme a los acuerdos contractuales aplicables.</p>
     </section>
 
     <section class="card">
@@ -79,7 +86,7 @@
 
     <section class="card">
       <h2>Gestión de datos y privacidad por diseño</h2>
-      <p>Nuestra filosofía es <em>privacidad por diseño</em>: la privacidad está integrada en el desarrollo de productos, selección de proveedores y operaciones. Realizamos capacitaciones periódicas a todo el personal.</p>
+      <p>Nuestra filosofía es <em>privacidad por diseño</em>: la privacidad está integrada en el desarrollo de productos, selección de proveedores y operaciones. Realizamos capacitaciones periódicas y evaluaciones de impacto cuando es necesario.</p>
     </section>
 
     <section class="card">
@@ -101,37 +108,80 @@
       <p>Nuestros acuerdos (MSA, DPA) describen procesos, estándares y salvaguardas. Revisamos y actualizamos estos documentos para mantener el cumplimiento con RGPD, CCPA y otros estándares internacionales.</p>
     </section>
 
-    <section class="card">
-      <h2 id="whatsapp">Solicitud de key de WhatsApp</h2>
-      <p>Si necesitas la key (token/API key) de WhatsApp para integrar servicios con Loop8AI, completa el formulario a continuación. La key se entregará a cuentas verificadas tras la evaluación de seguridad y aceptación de nuestros términos.</p>
+    <section class="card" id="whatsapp">
+      <h2>Solicitud de key de WhatsApp</h2>
+      <p>Si necesitas la key (token/API key) de WhatsApp para integrar servicios con Loop8AI, completa el formulario a continuación. La key se entregará a cuentas verificadas tras la evaluación de seguridad y cumplimiento.</p>
 
-      <form action="mailto:privacy@loop8ai.com" method="post" enctype="text/plain">
-        <label>Nombre de la empresa / proyecto
-          <input type="text" name="empresa" required placeholder="Ej. MiEmpresa S.A." />
+      <form id="whatsapp-form" aria-label="Formulario de solicitud de key de WhatsApp">
+        <label for="empresa">Nombre de la empresa / proyecto
+          <input id="empresa" name="empresa" type="text" required placeholder="Ej. MiEmpresa S.A." />
         </label>
-        <label>Persona de contacto (nombre)
-          <input type="text" name="contacto" required placeholder="Nombre completo" />
+
+        <label for="contacto">Persona de contacto (nombre)
+          <input id="contacto" name="contacto" type="text" required placeholder="Nombre completo" />
         </label>
-        <label>Correo electrónico de contacto
-          <input type="email" name="email" required placeholder="contacto@empresa.com" />
+
+        <label for="email">Correo electrónico de contacto
+          <input id="email" name="email" type="email" required placeholder="contacto@empresa.com" />
         </label>
-        <label>Dominio / URL donde se usará la integración
-          <input type="url" name="dominio" placeholder="https://tuapp.com" />
+
+        <label for="dominio">Dominio / URL donde se usará la integración
+          <input id="dominio" name="dominio" type="url" placeholder="https://tuapp.com" />
         </label>
-        <label>Uso previsto (breve descripción)
-          <textarea name="uso" rows="4" placeholder="Descripción de 1–2 líneas" required></textarea>
+
+        <label for="uso">Uso previsto (breve descripción)
+          <textarea id="uso" name="uso" rows="4" placeholder="Descripción de 1–2 líneas" required></textarea>
         </label>
+
         <label>
-          <input type="checkbox" name="acepto" required /> Acepto la <a href="#" onclick="alert('Por favor, contacte a privacy@loop8ai.com para recibir el DPA y términos.');return false;">Política de Privacidad</a> y confirmo que soy autorizado para solicitar la key.
+          <input id="acepto" name="acepto" type="checkbox" required /> Acepto la <a href="#" onclick="alert('Por favor contacte a privacy@loop8ai.com para recibir el DPA y términos completos.'); return false;">Política de privacidad y el DPA</a>
         </label>
+
         <div>
-          <button type="submit">Solicitar key de WhatsApp</button>
+          <button id="submit-btn" type="submit">Solicitar key de WhatsApp</button>
         </div>
+
+        <p class="small">Nota: Esta solicitud será revisada manualmente. Si la prefieres enviar directamente por email, escribe a <a href="mailto:privacy@loop8ai.com">privacy@loop8ai.com</a> con el asunto "Solicitud Key WhatsApp".</p>
+
+        <p class="small">URL sugerida para publicar esta política y el formulario: <strong><a href="https://loop8ai.com/privacy/whatsapp-key" target="_blank" rel="noopener noreferrer">https://loop8ai.com/privacy/whatsapp-key</a></strong></p>
       </form>
 
-      <p class="small">Nota: Esta solicitud será revisada manualmente. Si la prefieres enviar directamente por email, escribe a <a href="mailto:privacy@loop8ai.com">privacy@loop8ai.com</a> con el asunto <code>Solicitud Key WhatsApp — &lt;Tu empresa&gt;</code>.</p>
+      <script>
+        (function(){
+          function escapeMailto(str){
+            return encodeURIComponent(str).replace(/%20/g,' ');
+          }
 
-      <p class="small">URL sugerida para publicar esta política y el formulario: <strong>https://loop8ai.com/privacy/whatsapp-key</strong></p>
+          document.getElementById('whatsapp-form').addEventListener('submit', function(e){
+            e.preventDefault();
+            var empresa = document.getElementById('empresa').value.trim();
+            var contacto = document.getElementById('contacto').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var dominio = document.getElementById('dominio').value.trim();
+            var uso = document.getElementById('uso').value.trim();
+
+            var subject = 'Solicitud Key WhatsApp - ' + (empresa || contacto || 'Sin nombre');
+            var body = [
+              'Empresa/Proyecto: ' + empresa,
+              'Persona de contacto: ' + contacto,
+              'Email de contacto: ' + email,
+              'Dominio/URL: ' + dominio,
+              'Uso previsto:',
+              uso,
+              '',
+              'He leído y acepto la Política de privacidad y el DPA según corresponda.'
+            ].join('\n');
+
+            // Construir mailto
+            var mailto = 'mailto:privacy@loop8ai.com'
+                       + '?subject=' + encodeURIComponent(subject)
+                       + '&body=' + encodeURIComponent(body);
+
+            // Abrir cliente de correo
+            window.location.href = mailto;
+          });
+        })();
+      </script>
     </section>
 
     <footer class="card small">
